@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "dev.trinsdar.ic2cjsonrecipes.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "mixins": [
+  ],
+  "client": [
+  ],
+  "refmap": "ic2cjsonrecipes.refmap.json"
+}

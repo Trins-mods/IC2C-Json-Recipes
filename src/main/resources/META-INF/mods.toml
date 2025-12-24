@@ -1,0 +1,25 @@
+modLoader="javafml" #mandatory
+license="LGPLv3"
+loaderVersion="[40,)"
+issueTrackerURL="https://github.com/Trins-mods/IC2C-Json-Recipes/issues" #optional
+
+[[mods]]
+modId="ic2cjsonrecipes" #mandatory
+version="${version}"
+displayName="IC2C Json Recipes" #mandatory
+credits="Speiger for making IC2 Classic"
+authors="Trinsdar"
+description='''Concept mixin mod for making IC2 Classic use datapack system.'''
+# A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
+[[dependencies.ic2cjsonrecipes]]
+    modId="forge"
+    mandatory=true
+    versionRange="[42.2.0,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.ic2cjsonrecipes]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.19.2]"
+    ordering="NONE"
+    side="BOTH"
