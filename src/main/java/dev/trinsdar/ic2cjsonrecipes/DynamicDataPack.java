@@ -50,15 +50,9 @@ public class DynamicDataPack implements PackResources {
         DATA.clear();
     }
 
-    public static void addRecipe(FinishedRecipe recipe) {
+    public static void addRecipe(IRecipeEntry recipe) {
         JsonObject recipeJson = recipe.serializeRecipe();
-        Path parent = FMLPaths.CONFIGDIR.get().getParent()
-                .resolve("dumped/gtlib-dynamic-data/data");
         DATA.put(getRecipeLoc(recipe.getId()), recipeJson);
-        if (recipe.serializeAdvancement() != null) {
-            JsonObject advancement = recipe.serializeAdvancement();
-            DATA.put(getAdvancementLoc(Objects.requireNonNull(recipe.getAdvancementId())), advancement);
-        }
     }
 
     private static void writeJson(ResourceLocation id, String subdir, Path parent, JsonObject json){
@@ -73,12 +67,6 @@ public class DynamicDataPack implements PackResources {
         }
     }
 
-    public static void addAdvancement(ResourceLocation loc, JsonObject obj) {
-        ResourceLocation l = getAdvancementLoc(loc);
-        synchronized (DATA) {
-            DATA.put(l, obj);
-        }
-    }
 
     @Override
     public InputStream getResource(PackType type, ResourceLocation location) throws IOException {
@@ -145,17 +133,5 @@ public class DynamicDataPack implements PackResources {
 
     public static ResourceLocation getRecipeLoc(ResourceLocation recipeId) {
         return new ResourceLocation(recipeId.getNamespace(), String.join("", "recipes/", recipeId.getPath(), ".json"));
-    }
-
-    public static ResourceLocation getWorldgenLoc(ResourceLocation worldgenId, String subDirectory) {
-        return new ResourceLocation(worldgenId.getNamespace(), String.join("", "gt_worldgen/", subDirectory, "/", worldgenId.getPath(), ".json"));
-    }
-
-    public static ResourceLocation getAdvancementLoc(ResourceLocation advancementId) {
-        return new ResourceLocation(advancementId.getNamespace(), String.join("", "advancements/", advancementId.getPath(), ".json"));
-    }
-
-    public static ResourceLocation getTagLoc(String identifier, ResourceLocation tagId) {
-        return new ResourceLocation(tagId.getNamespace(), String.join("", "tags/", identifier, "/", tagId.getPath(), ".json"));
     }
 }
