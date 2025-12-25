@@ -41,8 +41,8 @@ if (isCI) {
 legacyForge {
     version = "${project.minecraft_version}-${project.forge_version}"
     parchment {
-        minecraftVersion = rootProject.minecraft_version
-        mappingsVersion = rootProject.mappings_version
+        minecraftVersion = project.minecraft_version
+        mappingsVersion = project.mappings_version
     }
     runs {
         client {
@@ -71,6 +71,8 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     implementation("org.jetbrains:annotations:26.0.1")
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
+    modImplementation("curse.maven:ic2_classic-242942:5230420")
+    modImplementation(jarJar("dev.trinsdar:arrp-forge:${project.arrp_version}"))
     implementation("mezz.jei:jei-${project.minecraft_version}-common-api:${project.jei_version}")
     modImplementation("mezz.jei:jei-${project.minecraft_version}-forge:${project.jei_version}")
     modImplementation("curse.maven:the-one-probe-245211:${project.top_version}")
